@@ -15,12 +15,10 @@
     font-family: 'Arial', sans-serif;
     background: linear-gradient(135deg, #003f7f 0%, #0066cc 100%);
     color: #333;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+    height: 100%;
   }
   * { box-sizing: border-box; }
-  .container { max-width: 1200px; margin: 0 auto; background: white; flex:1; display:flex; flex-direction:column; }
+  .container { max-width: 1200px; margin: 0 auto; background: white; min-height: 100%; box-shadow: 0 0 20px rgba(0,0,0,0.1); }
 
   /* Header */
   .header {
@@ -31,7 +29,7 @@
     position: relative;
   }
   .header-content { display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; }
-  .header-text h1 {
+ .header-text h1 {
     margin: 0;
     font-size: 42px;
     font-weight: 900;
@@ -69,7 +67,7 @@
   .nav-btn:hover, .nav-btn.active { background: rgba(255,255,255,0.1); border-bottom-color: #ffd700; }
 
   /* Main Content */
-  .main-content { padding: 40px 20px; min-height: 500px; flex:1; }
+  .main-content { padding: 40px 20px; min-height: 500px; }
   .page { display: none; animation: fadeIn 0.3s ease; }
   .page.active { display: block; }
   @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
@@ -110,30 +108,6 @@
     margin: 0 auto 15px;
     color: white;
     font-size: 24px;
-  }
-
-  /* Links Page with outline colors */
-  .links-grid > div { border: 4px solid #000; transition: all 0.3s ease; }
-  .links-grid > div:nth-child(1) { border-color: #FFB347; }
-  .links-grid > div:nth-child(2) { border-color: #7FDBFF; }
-  .links-grid > div:nth-child(3) { border-color: #FF6961; }
-  .links-grid > div:nth-child(4) { border-color: #9B59B6; }
-  .links-grid > div:nth-child(5) { border-color: #2ECC71; }
-
-  /* Calendar */
-  .calendar-container { margin-top:20px; }
-  .calendar-day { padding:5px; text-align:center; min-height:60px; position:relative; }
-  .calendar-event { display:block; font-size:12px; margin-top:2px; }
-  .meeting-day { background:#ffd70022; border-radius:5px; }
-  .holiday { background:#ff696122; border-radius:5px; }
-  .has-event { background:#6c6cff22; border-radius:5px; }
-
-  /* Footer */
-  footer {
-    background:#002d5a;
-    color:white;
-    text-align:center;
-    padding:20px;
   }
 
   /* Responsive Design */
@@ -221,7 +195,32 @@
       <h3>Schedule</h3>
       <div class="calendar-container">
         <p>Below is our monthly meeting calendar:</p>
-        <div id="calendar-grid" style="display:grid; grid-template-columns:repeat(7,1fr); gap:5px;"></div>
+        <table border="1" cellpadding="10" cellspacing="0">
+          <tr>
+            <th>Sunday</th>
+            <th>Monday</th>
+            <th>Tuesday</th>
+            <th>Wednesday</th>
+            <th>Thursday</th>
+            <th>Friday</th>
+            <th>Saturday</th>
+          </tr>
+          <tr>
+            <td></td><td></td><td></td><td>1</td><td>2</td><td>3</td><td>4</td>
+          </tr>
+          <tr>
+            <td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td>
+          </tr>
+          <tr>
+            <td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td>
+          </tr>
+          <tr>
+            <td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td>
+          </tr>
+          <tr>
+            <td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td>31</td><td></td>
+          </tr>
+        </table>
       </div>
     </div>
 
@@ -229,51 +228,100 @@
     <div id="location" class="page">
       <h2>Our Location</h2>
       <p>We hold our troop meetings at our local community center. Click the link below for directions:</p>
-      <p id="location-address">Your Community Center</p>
       <p><a href="https://www.google.com/maps/place/Your+Community+Center" target="_blank">View on Google Maps</a></p>
       <div style="margin-top:20px;">
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.123456!2d-122.123456!3d37.123456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808f123456789abc%3A0xabcdef1234567890!2sYour+Community+Center!5e0!3m2!1sen!2sus!4v1612345678901" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
       </div>
     </div>
 
-    <!-- Links Page -->
-    <div id="links" class="page">
-      <h2>Helpful Links</h2>
-      <p>Here are some helpful links for families and scouts:</p>
+<!-- Links Page -->
+<div id="links" class="page">
+  <h2>Helpful Links</h2>
+  <p>Here are some helpful links for families and scouts:</p>
 
-      <div class="links-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:20px; margin-top:20px;">
-        <div style="background:#FFB347; padding:20px; border-radius:10px; text-align:center;">
-          <h3>Scouting America</h3>
-          <a href="https://www.scouting.org" target="_blank" style="display:inline-block; margin-top:10px; background:#FFD700; padding:10px 15px; border-radius:5px; text-decoration:none; color:#000;">Visit Website</a>
-        </div>
-        <div style="background:#7FDBFF; padding:20px; border-radius:10px; text-align:center;">
-          <h3>Scoutbook</h3>
-          <a href="https://www.scoutbook.com" target="_blank" style="display:inline-block; margin-top:10px; background:#0074D9; padding:10px 15px; border-radius:5px; text-decoration:none; color:white;">Visit Website</a>
-        </div>
-        <div style="background:#FF6961; padding:20px; border-radius:10px; text-align:center;">
-          <h3>North Florida Council</h3>
-          <a href="https://www.nfcscouting.org" target="_blank" style="display:inline-block; margin-top:10px; background:#C0392B; padding:10px 15px; border-radius:5px; text-decoration:none; color:white;">Visit Website</a>
-        </div>
-        <div style="background:#9B59B6; padding:20px; border-radius:10px; text-align:center;">
-          <h3>Training</h3>
-          <a href="https://www.scouting.org/leadership-development/" target="_blank" style="display:inline-block; margin-top:10px; background:#8E44AD; padding:10px 15px; border-radius:5px; text-decoration:none; color:white;">Visit Website</a>
-        </div>
-        <div style="background:#2ECC71; padding:20px; border-radius:10px; text-align:center;">
-          <h3>Merit Badges</h3>
-          <a href="https://www.scouting.org/programs/scouts-bsa/advancement-and-awards/merit-badges/" target="_blank" style="display:inline-block; margin-top:10px; background:#27AE60; padding:10px 15px; border-radius:5px; text-decoration:none; color:white;">Visit Website</a>
-        </div>
-      </div>
+  <div class="links-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:20px; margin-top:20px;">
+    
+    <!-- Scouting America -->
+    <div style="background:#FFB347; padding:20px; border-radius:10px; text-align:center;">
+      <h3>Scouting America</h3>
+      <a href="https://www.scouting.org" target="_blank" style="display:inline-block; margin-top:10px; background:#FFD700; padding:10px 15px; border-radius:5px; text-decoration:none; color:#000;">Visit Website</a>
     </div>
 
-  </main>
+    <!-- Scoutbook -->
+    <div style="background:#7FDBFF; padding:20px; border-radius:10px; text-align:center;">
+      <h3>Scoutbook</h3>
+      <a href="https://www.scoutbook.com" target="_blank" style="display:inline-block; margin-top:10px; background:#0074D9; padding:10px 15px; border-radius:5px; text-decoration:none; color:white;">Visit Website</a>
+    </div>
 
-  <footer>
-    &copy; 2025 BSA Troop 128. All rights reserved.
-  </footer>
+    <!-- North Florida Council -->
+    <div style="background:#FF6961; padding:20px; border-radius:10px; text-align:center;">
+      <h3>North Florida Council</h3>
+      <a href="https://www.nfcscouting.org" target="_blank" style="display:inline-block; margin-top:10px; background:#C0392B; padding:10px 15px; border-radius:5px; text-decoration:none; color:white;">Visit Website</a>
+    </div>
+
+    <!-- Training -->
+    <div style="background:#9B59B6; padding:20px; border-radius:10px; text-align:center;">
+      <h3>Training</h3>
+      <a href="https://www.scouting.org/leadership-development/" target="_blank" style="display:inline-block; margin-top:10px; background:#8E44AD; padding:10px 15px; border-radius:5px; text-decoration:none; color:white;">Visit Website</a>
+    </div>
+
+    <!-- Merit Badges -->
+    <div style="background:#2ECC71; padding:20px; border-radius:10px; text-align:center;">
+      <h3>Merit Badges</h3>
+      <a href="https://www.scouting.org/programs/scouts-bsa/advancement-and-awards/merit-badges/" target="_blank" style="display:inline-block; margin-top:10px; background:#27AE60; padding:10px 15px; border-radius:5px; text-decoration:none; color:white;">Visit Website</a>
+    </div>
+
+  </div>
 </div>
 
+
+
+
+<!-- Footer -->
+<footer>
+  &copy; <span id="year"></span> BSA Troop 128. All rights reserved.
+</footer>
+
+<style>
+/* Ensure page fills viewport */
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+/* Container flex for footer at bottom */
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* full viewport height */
+}
+
+/* Main content takes remaining space and adds cushion for footer */
+.main-content {
+  flex: 1 0 auto;
+  padding-bottom: 100px; /* space for footer */
+}
+
+/* Footer styling */
+footer {
+  background: #002d5a;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  width: 100%;
+}
+</style>
+
 <script>
-  // Show page
+// Automatically update year
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+
+</div>
+
+<!-- Scripts -->
+<script>
   function showPage(pageId) {
     const pages = document.querySelectorAll('.page');
     pages.forEach(p => p.classList.remove('active'));
@@ -283,62 +331,250 @@
     buttons.forEach(b => b.classList.remove('active'));
     document.querySelector(`.nav-btn[onclick="showPage('${pageId}')"]`).classList.add('active');
   }
-
-  // Calendar
-  const holidays = {
-    2025: [
-      {month:0, day:1, name:"New Year's Day"},
-      {month:6, day:4, name:"Independence Day"},
-      {month:11, day:25, name:"Christmas Day"}
-    ]
-  };
-  const schoolBreaks = {
-    2025: [
-      {startMonth:5,startDay:30,endMonth:8,endDay:2,name:"Summer Break"}
-    ]
-  };
-  const campingTrips = [
-    {year:2025,month:3,startDay:12,endDay:14,name:"Spring Campout"}
-  ];
-
-  let currentCalendarDate = new Date();
-
-  function isHoliday(year, month, day){
-    return holidays[year]?.some(h => h.month===month && h.day===day);
-  }
-  function isSchoolBreak(year,month,day){
-    return schoolBreaks[year]?.some(b=>{
-      if(b.startMonth===b.endMonth) return month===b.startMonth && day>=b.startDay && day<=b.endDay;
-      return (month===b.startMonth && day>=b.startDay)||(month===b.endMonth && day<=b.endDay)||(month>b.startMonth && month<b.endMonth);
-    });
-  }
-
-  function generateCalendar(year,month){
-    const firstDay=new Date(year,month,1);
-    const startDate=new Date(firstDay);
-    startDate.setDate(startDate.getDate()-firstDay.getDay());
-    const calendarGrid=document.getElementById('calendar-grid');
-    calendarGrid.innerHTML='';
-    ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].forEach(day=>{
-      const header=document.createElement('div'); header.textContent=day; header.style.fontWeight='bold'; calendarGrid.appendChild(header);
-    });
-    const currentDateObj=new Date(startDate);
-    for(let i=0;i<42;i++){
-      const dayElement=document.createElement('div'); const dayNumber=currentDateObj.getDate();
-      const inCurrentMonth=currentDateObj.getMonth()===month;
-      if(inCurrentMonth){
-        dayElement.textContent=dayNumber;
-        const holiday=isHoliday(year,month,dayNumber);
-        const schoolBreak=isSchoolBreak(year,month,dayNumber);
-        const isMeetingDay=currentDateObj.getDay()===1;
-        if(holiday||schoolBreak){ dayElement.classList.add('holiday'); }
-        else if(isMeetingDay){ dayElement.classList.add('meeting-day'); const span=document.createElement('span'); span.className='calendar-event meeting'; span.textContent='Meeting'; dayElement.appendChild(span);}
-      }else{ dayElement.style.color='#ccc'; dayElement.textContent=dayNumber; }
-      calendarGrid.appendChild(dayElement);
-      currentDateObj.setDate(currentDateObj.getDate()+1);
-    }
-  }
-  document.addEventListener('DOMContentLoaded',()=>generateCalendar(currentCalendarDate.getFullYear(),currentCalendarDate.getMonth()));
 </script>
 </body>
 </html>
+<script>
+  // Initialize current month/year
+  let currentCalendarDate = new Date();
+
+  // Function to show a page (keeps new buttons)
+  function showPage(pageId) {
+    const pages = document.querySelectorAll('.page');
+    pages.forEach(p => p.classList.remove('active'));
+    document.getElementById(pageId).classList.add('active');
+
+    const navBtns = document.querySelectorAll('.nav-btn');
+    navBtns.forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+  }
+
+  // Calendar helpers
+  function isHoliday(year, month, day) {
+    const yearHolidays = holidays[year] || [];
+    return yearHolidays.find(h => h.month === month && h.day === day);
+  }
+
+  function isSchoolBreak(year, month, day) {
+    const yearBreaks = schoolBreaks[year] || [];
+    return yearBreaks.find(b => {
+      if (b.startMonth === b.endMonth) {
+        return month === b.startMonth && day >= b.startDay && day <= b.endDay;
+      } else {
+        return (month === b.startMonth && day >= b.startDay) ||
+               (month === b.endMonth && day <= b.endDay) ||
+               (month > b.startMonth && month < b.endMonth);
+      }
+    });
+  }
+
+  function isCampingDay(year, month, day) {
+    return campingTrips.find(trip => trip.year === year && trip.month === month &&
+                                     day >= trip.startDay && day <= trip.endDay);
+  }
+
+  function generateCalendar(year, month) {
+    const firstDay = new Date(year, month, 1);
+    const lastDay = new Date(year, month + 1, 0);
+    const startDate = new Date(firstDay);
+    startDate.setDate(startDate.getDate() - firstDay.getDay());
+
+    const monthNames = [
+      "January","February","March","April","May","June",
+      "July","August","September","October","November","December"
+    ];
+    document.getElementById('calendar-month-year').textContent = `${monthNames[month]} ${year}`;
+
+    const calendarGrid = document.getElementById('calendar-grid');
+    calendarGrid.innerHTML = '';
+
+    // Add day headers
+    ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].forEach(day => {
+      const header = document.createElement('div');
+      header.className = 'calendar-day-header';
+      header.textContent = day;
+      calendarGrid.appendChild(header);
+    });
+
+    const currentDateObj = new Date(startDate);
+    for (let i = 0; i < 42; i++) {
+      const dayElement = document.createElement('div');
+      dayElement.className = 'calendar-day';
+      const dayNumber = currentDateObj.getDate();
+      const inCurrentMonth = currentDateObj.getMonth() === month;
+
+      if (inCurrentMonth) {
+        dayElement.textContent = dayNumber;
+
+        const holiday = isHoliday(year, month, dayNumber);
+        const schoolBreak = isSchoolBreak(year, month, dayNumber);
+        const camping = isCampingDay(year, month, dayNumber);
+        const isMeetingDay = currentDateObj.getDay() === 1; // Mondays
+
+        if (holiday) {
+          dayElement.classList.add('holiday');
+          const span = document.createElement('span');
+          span.className = 'calendar-event holiday';
+          span.textContent = holiday.name;
+          dayElement.appendChild(span);
+        } else if (schoolBreak) {
+          dayElement.classList.add('holiday');
+          const span = document.createElement('span');
+          span.className = 'calendar-event holiday';
+          span.textContent = schoolBreak.name;
+          dayElement.appendChild(span);
+        } else if (camping) {
+          dayElement.classList.add('has-event');
+          const span = document.createElement('span');
+          span.className = 'calendar-event camping';
+          span.textContent = camping.name;
+          dayElement.appendChild(span);
+        } else if (isMeetingDay) {
+          dayElement.classList.add('meeting-day');
+          const span = document.createElement('span');
+          span.className = 'calendar-event meeting';
+          span.textContent = 'Meeting';
+          dayElement.appendChild(span);
+        }
+      } else {
+        dayElement.style.color = '#ccc';
+        dayElement.textContent = dayNumber;
+      }
+
+      calendarGrid.appendChild(dayElement);
+      currentDateObj.setDate(currentDateObj.getDate() + 1);
+    }
+  }
+
+  function changeMonth(direction) {
+    currentCalendarDate.setMonth(currentCalendarDate.getMonth() + direction);
+    generateCalendar(currentCalendarDate.getFullYear(), currentCalendarDate.getMonth());
+  }
+
+  // Initialize calendar on load
+  document.addEventListener('DOMContentLoaded', () => {
+    generateCalendar(currentCalendarDate.getFullYear(), currentCalendarDate.getMonth());
+  });
+</script>
+<script>
+  const defaultConfig = {
+    troop_name: "BSA Troop 128",
+    troop_motto: "Be Prepared",
+    meeting_day: "Every Monday",
+    meeting_time: "7:00 PM - 8:30 PM",
+    meeting_location: "Kirkwood Presbyterian Church",
+    scoutmaster_name: "Mr. Chris",
+    contact_email: "troop128@example.com",
+    background_color: "#003f7f",
+    surface_color: "#0066cc",
+    text_color: "#333333",
+    primary_action_color: "#ffd700",
+    secondary_action_color: "#28a745",
+    font_family: "Arial",
+    font_size: 16
+  };
+
+  async function onConfigChange(config) {
+    // Text content
+    document.getElementById('troop-name').textContent = config.troop_name || defaultConfig.troop_name;
+    document.getElementById('troop-motto').textContent = config.troop_motto || defaultConfig.troop_motto;
+    document.getElementById('meeting-day').textContent = config.meeting_day || defaultConfig.meeting_day;
+    document.getElementById('meeting-time').textContent = config.meeting_time || defaultConfig.meeting_time;
+    document.getElementById('meeting-location').textContent = config.meeting_location || defaultConfig.meeting_location;
+
+    document.querySelectorAll('#scoutmaster-name, #emergency-contact')
+      .forEach(el => el.textContent = config.scoutmaster_name || defaultConfig.scoutmaster_name);
+    document.querySelectorAll('#contact-email, #location-contact')
+      .forEach(el => el.textContent = config.contact_email || defaultConfig.contact_email);
+
+    // Colors and fonts
+    const background = config.background_color || defaultConfig.background_color;
+    const surface = config.surface_color || defaultConfig.surface_color;
+    const text = config.text_color || defaultConfig.text_color;
+    const primary = config.primary_action_color || defaultConfig.primary_action_color;
+    const secondary = config.secondary_action_color || defaultConfig.secondary_action_color;
+    const font = config.font_family || defaultConfig.font_family;
+    const baseSize = config.font_size || defaultConfig.font_size;
+
+    document.body.style.background = `linear-gradient(135deg, ${background} 0%, ${surface} 100%)`;
+    document.body.style.color = text;
+    document.body.style.fontFamily = `${font}, Arial, sans-serif`;
+
+    document.querySelector('.header').style.background = `linear-gradient(135deg, ${background} 0%, ${surface} 100%)`;
+    document.querySelector('.nav').style.background = background;
+
+    document.getElementById('troop-name').style.fontSize = `${baseSize * 2.25}px`;
+    document.getElementById('troop-motto').style.fontSize = `${baseSize * 1.125}px`;
+
+    document.querySelectorAll('h2').forEach(h2 => {
+      h2.style.fontSize = `${baseSize * 1.75}px`;
+      h2.style.color = background;
+      h2.style.borderBottomColor = primary;
+    });
+
+    document.querySelectorAll('h3').forEach(h3 => {
+      h3.style.fontSize = `${baseSize * 1.375}px`;
+      h3.style.color = surface;
+    });
+
+    document.querySelectorAll('p').forEach(p => p.style.color = text);
+
+    document.querySelectorAll('.camping-date').forEach(d => {
+      d.style.background = primary;
+      d.style.color = text;
+    });
+
+    document.querySelectorAll('.link-btn').forEach(btn => {
+      if (!btn.classList.contains('scoutbook')) btn.style.background = surface;
+    });
+  }
+
+  // Google Maps link for location page
+  const locationAddress = document.getElementById('location-address').textContent;
+  const mapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(locationAddress)}`;
+  const directionsContainer = document.querySelector('.directions-buttons');
+  if (directionsContainer) {
+    const googleMapsBtn = document.createElement('a');
+    googleMapsBtn.href = mapsUrl;
+    googleMapsBtn.target = "_blank";
+    googleMapsBtn.rel = "noopener noreferrer";
+    googleMapsBtn.className = "map-btn";
+    googleMapsBtn.textContent = "Get Directions (Google Maps)";
+    directionsContainer.appendChild(googleMapsBtn);
+  }
+
+  // Initialize SDK if available
+  if (window.elementSdk) {
+    window.elementSdk.init({
+      defaultConfig,
+      onConfigChange,
+      mapToCapabilities: (config) => ({
+        recolorables: [
+          { get: () => config.background_color || defaultConfig.background_color, set: (v) => { config.background_color = v; window.elementSdk.setConfig({ background_color: v }); }},
+          { get: () => config.surface_color || defaultConfig.surface_color, set: (v) => { config.surface_color = v; window.elementSdk.setConfig({ surface_color: v }); }},
+          { get: () => config.text_color || defaultConfig.text_color, set: (v) => { config.text_color = v; window.elementSdk.setConfig({ text_color: v }); }},
+          { get: () => config.primary_action_color || defaultConfig.primary_action_color, set: (v) => { config.primary_action_color = v; window.elementSdk.setConfig({ primary_action_color: v }); }},
+          { get: () => config.secondary_action_color || defaultConfig.secondary_action_color, set: (v) => { config.secondary_action_color = v; window.elementSdk.setConfig({ secondary_action_color: v }); }}
+        ],
+        borderables: [],
+        fontEditable: {
+          get: () => config.font_family || defaultConfig.font_family,
+          set: (v) => { config.font_family = v; window.elementSdk.setConfig({ font_family: v }); }
+        },
+        fontSizeable: {
+          get: () => config.font_size || defaultConfig.font_size,
+          set: (v) => { config.font_size = v; window.elementSdk.setConfig({ font_size: v }); }
+        }
+      }),
+      mapToEditPanelValues: (config) => new Map([
+        ["troop_name", config.troop_name || defaultConfig.troop_name],
+        ["troop_motto", config.troop_motto || defaultConfig.troop_motto],
+        ["meeting_day", config.meeting_day || defaultConfig.meeting_day],
+        ["meeting_time", config.meeting_time || defaultConfig.meeting_time],
+        ["meeting_location", config.meeting_location || defaultConfig.meeting_location],
+        ["scoutmaster_name", config.scoutmaster_name || defaultConfig.scoutmaster_name],
+        ["contact_email", config.contact_email || defaultConfig.contact_email]
+      ])
+    });
+  }
+</script>
