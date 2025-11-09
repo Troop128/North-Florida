@@ -283,23 +283,23 @@
 </footer>
 
 <style>
-/* Ensure page fills viewport */
+/* Make body and html fill the viewport */
 html, body {
   height: 100%;
   margin: 0;
 }
 
-/* Container flex for footer at bottom */
+/* Flex container to push footer to bottom */
 .container {
   display: flex;
   flex-direction: column;
   min-height: 100vh; /* full viewport height */
 }
 
-/* Main content takes remaining space and adds cushion for footer */
+/* Main content takes remaining space */
 .main-content {
   flex: 1 0 auto;
-  padding-bottom: 100px; /* space for footer */
+  padding-bottom: 0; /* no need for extra padding now */
 }
 
 /* Footer styling */
@@ -309,6 +309,7 @@ footer {
   text-align: center;
   padding: 20px;
   width: 100%;
+  margin-top: auto; /* pushes footer to bottom of container */
 }
 </style>
 
@@ -316,6 +317,7 @@ footer {
 // Automatically update year
 document.getElementById('year').textContent = new Date().getFullYear();
 </script>
+
 
 
 </div>
